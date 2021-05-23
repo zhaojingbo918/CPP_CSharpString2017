@@ -14,7 +14,7 @@ namespace CSharpTest
             CallUsingStringAsReturnValue();
 
             CallUsingBSTRAsReturnValue();
-
+            CallUsingWideStringAsReturnValue();
             Console.ReadKey();
         }
 
@@ -40,6 +40,14 @@ namespace CSharpTest
             Console.WriteLine("Returned string Using BSTR: " + strReturn);
         }
 
+        [DllImport("CPPTEST.dll", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
+        [return: MarshalAs(UnmanagedType.LPWStr)]
+        public static extern string StringReturnAPI03();
 
+        static void CallUsingWideStringAsReturnValue()
+        {
+            string strReturn = StringReturnAPI03();
+            Console.WriteLine("Returned string Unicode String: " + strReturn);
+        }
     }
 }
