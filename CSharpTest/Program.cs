@@ -13,6 +13,8 @@ namespace CSharpTest
         {
             CallUsingStringAsReturnValue();
 
+            CallUsingBSTRAsReturnValue();
+
             Console.ReadKey();
         }
 
@@ -27,7 +29,17 @@ namespace CSharpTest
         }
 
 
-        [DllImport("CPPTEST")]
-        public static extern int fnCPPTest2();
+
+        [DllImport("CPPTEST", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
+        [return: MarshalAs(UnmanagedType.BStr)]
+        public static extern string StringReturnAPI02();
+
+        static void CallUsingBSTRAsReturnValue()
+        {
+            string strReturn = StringReturnAPI02();
+            Console.WriteLine("Returned string Using BSTR: " + strReturn);
+        }
+
+
     }
 }
