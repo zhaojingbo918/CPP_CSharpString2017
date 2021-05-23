@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace CSharpTest
@@ -15,6 +16,11 @@ namespace CSharpTest
 
             CallUsingBSTRAsReturnValue();
             CallUsingWideStringAsReturnValue();
+
+            CallUsingLowLevelStringManagement();
+
+            CallUsingLowLevelStringManagement02();
+             
             Console.ReadKey();
         }
 
@@ -49,5 +55,49 @@ namespace CSharpTest
             string strReturn = StringReturnAPI03();
             Console.WriteLine("Returned string Unicode String: " + strReturn);
         }
+
+        #region Low-Level Handling Sample 1
+
+        [DllImport("CPPTEST.dll", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
+        public static extern IntPtr PtrReturnAPI01();
+
+        static void CallUsingLowLevelStringManagement()
+        {
+            // Receive the pointer to ANSI character array
+            // from API.
+            IntPtr pStr = PtrReturnAPI01();
+            // Construct a string from the pointer.
+            string str = Marshal.PtrToStringAnsi(pStr);
+            // Free the memory pointed to by the pointer.
+            Marshal.FreeHGlobal(pStr);
+            pStr = IntPtr.Zero;
+            // Display the string.
+            Console.WriteLine("Returned string : " + str);
+        }
+        #endregion
+
+
+        #region Low-Level Handling Sample 2
+
+        [DllImport("CPPTEST", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
+        public static extern IntPtr PtrReturnAPI02();
+
+
+        static void CallUsingLowLevelStringManagement02()
+        {
+            // Receive the pointer to Unicde character array
+            // from API.
+            IntPtr pStr = PtrReturnAPI02();
+            // Construct a string from the pointer.
+            string str = Marshal.PtrToStringUni(pStr);
+            // Display the string.
+            Console.WriteLine("Returned string : " + str);
+        }
+
+
+     
+
+
+        #endregion
     }
 }
