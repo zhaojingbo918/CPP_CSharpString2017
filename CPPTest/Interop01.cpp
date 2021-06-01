@@ -19,4 +19,12 @@ extern "C" __declspec(dllexport) void  __stdcall ReverseAnsiString(char* rawStri
 }
 
 
+extern "C" __declspec(dllexport) bool  __stdcall  IsAsciiNonbittable(char asciiChar)
+{
+	return (__isascii(asciiChar) != 0);
+}
 
+extern "C" __declspec(dllexport) bool  __stdcall  IsWasciiNonbittable(wchar_t wasciiChar)
+{
+	return (iswascii(wasciiChar) != 0);
+}

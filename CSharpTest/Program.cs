@@ -12,6 +12,7 @@ namespace CSharpTest
     {
         static void Main(string[] args)
         {
+            Interop01Wrapper.CompairWideAndAnsiChar();
             Interop01Wrapper.ReverseAnsiStringTest();
             CallUsingStringAsReturnValue();
 
