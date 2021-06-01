@@ -159,6 +159,7 @@
   <ItemGroup>
     <ClCompile Include="CPPTest.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="Interop01.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -12,6 +12,7 @@ namespace CSharpTest
     {
         static void Main(string[] args)
         {
+            Interop01Wrapper.ReverseAnsiStringTest();
             CallUsingStringAsReturnValue();
 
             CallUsingBSTRAsReturnValue();
@@ -20,7 +21,7 @@ namespace CSharpTest
             CallUsingLowLevelStringManagement();
 
             CallUsingLowLevelStringManagement02();
-             
+
             Console.ReadKey();
         }
 
@@ -95,7 +96,7 @@ namespace CSharpTest
         }
 
 
-     
+
 
 
         #endregion
